@@ -9,7 +9,7 @@ edition = "2021"
 operator = { path = "../operator" }
 
 async-trait = "0.1.88"
-bytes = "1.7.1"
+bytes = "1.11.1"
 dotenv = "0.15.0"
 futures-util = "0.3.30"
 miette = "7.6.0"
