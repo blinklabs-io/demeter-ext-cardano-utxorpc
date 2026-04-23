@@ -14,7 +14,7 @@ pingora = { version = "0.7.0", features = ["proxy", "openssl"] }
 regex = "1.10.3"
 tokio = { version = "1.36.0", features = ["full"] }
 tracing = "0.1.40"
-tracing-subscriber = "0.3.18"
+tracing-subscriber = "0.3.20"
 serde = { version = "1.0.197", features = ["derive"] }
 serde_json = "1.0.114"
 toml = "0.8.10"
