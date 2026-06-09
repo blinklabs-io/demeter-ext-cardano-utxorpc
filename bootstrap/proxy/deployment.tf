@@ -87,9 +87,19 @@ resource "kubernetes_deployment_v1" "utxorpc_proxy" {
             value = "/certs/tls.key"
           }
 
+          env {
+            name  = "PROXY_TIERS_PATH"
+            value = "/configs/tiers.toml"
+          }
+
           volume_mount {
             mount_path = "/certs"
             name       = "certs"
+          }
+
+          volume_mount {
+            mount_path = "/configs"
+            name       = "configs"
           }
         }
 
@@ -97,6 +107,13 @@ resource "kubernetes_deployment_v1" "utxorpc_proxy" {
           name = "certs"
           secret {
             secret_name = var.certs_secret_name
+          }
+        }
+
+        volume {
+          name = "configs"
+          config_map {
+            name = kubernetes_config_map.proxy.metadata.0.name
           }
         }
 

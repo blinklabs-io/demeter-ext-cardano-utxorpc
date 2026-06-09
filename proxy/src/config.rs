@@ -11,6 +11,8 @@ pub struct Config {
     pub health_endpoint: String,
     pub health_network: String,
     pub health_pool_interval: std::time::Duration,
+    pub proxy_tiers_path: std::path::PathBuf,
+    pub proxy_tiers_poll_interval: std::time::Duration,
 }
 impl Config {
     pub fn new() -> Self {
@@ -29,6 +31,17 @@ impl Config {
             health_endpoint: "/dmtr_health".to_string(),
             health_network: env::var("HEALTH_NETWORK").unwrap_or("cardano-mainnet".to_string()),
             health_pool_interval: std::time::Duration::from_secs(10),
+            proxy_tiers_path: env::var("PROXY_TIERS_PATH")
+                .map(|v| v.into())
+                .expect("PROXY_TIERS_PATH must be set"),
+            proxy_tiers_poll_interval: env::var("PROXY_TIERS_POLL_INTERVAL")
+                .map(|v| {
+                    std::time::Duration::from_secs(
+                        v.parse::<u64>()
+                            .expect("PROXY_TIERS_POLL_INTERVAL must be a number in seconds. eg: 2"),
+                    )
+                })
+                .unwrap_or(std::time::Duration::from_secs(2)),
         }
     }
 }

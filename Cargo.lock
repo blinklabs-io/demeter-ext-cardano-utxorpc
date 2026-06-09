@@ -2350,6 +2350,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "pingora-limits"
+version = "0.7.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "c952fa1c197d5cecae4a6df55a198a41118a8f68fe6ee45edbbe365b65e70a29"
+dependencies = [
+ "ahash",
+]
+
+[[package]]
 name = "pingora-load-balancing"
 version = "0.7.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2537,6 +2546,7 @@ dependencies = [
  "notify",
  "operator",
  "pingora",
+ "pingora-limits",
  "prometheus",
  "regex",
  "serde",
